@@ -1,0 +1,58 @@
+{
+	"clients":
+	{
+		"clientDef":
+		{
+			"name": "Dragon",
+			"image": "/Images/Dragon.png",
+			"description": "Dragons like to live in caves, sleep on treasure hordes, and repose in a charred forest.",
+			"trait": "Dragons love to horde, and get a bonus for taking items that would give a bonus to another player."
+		},
+		"clientDef":
+		{
+			"name": "Queen",
+			"image": "/Images/Queen.png",
+			"description": "Queens live to live in castles, sleep in overstuffed beds, and throw tea parties in a hedge maze.",
+			"trait": "The Queen has superior appreciation for aesthetics. She receives double bonus (or penalty!) for theme."
+		},
+		"clientDef":
+		{
+			"name": "Ghost",
+			"image": "/Images/Ghost.png",
+			"description": "Ghosts like to live in run-down shacks, sleep in the attic, and relax in a swamp.",
+			"trait": "Ghosts have few physical needs, and earn no penalty for failing to secure any item type."
+		}
+	},
+	"interests":
+	{
+		"interestDef":
+		{
+			"name": "Bookish",
+			"image": "/Images/interest_bookish.png",
+			"description": "This client is an avid reader, and likes to spend time indoors.",
+			"bonuses":
+			{
+				"Expensive_Couch": 2,
+				"Library": 3
+			}
+		}
+	},
+	"objects":
+	{
+		"objectDef":
+		{
+			"name": "Expensive_Couch",
+			"image": "/Images/Couch_Expensive.png",
+			"type": "couch",
+			"set": "expensive",
+			"description": "A very swanky couch.",
+			"bonuses":
+			{
+				"Dragon": -1,
+				"Queen": 2,
+				"Villager": 1,
+				"Ghost": 0
+			}
+		}
+	}
+}

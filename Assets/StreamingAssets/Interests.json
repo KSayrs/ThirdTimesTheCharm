@@ -1,0 +1,69 @@
+{
+  "Interests": [
+    {
+      "name": "studious",
+      "image": "/Images/Couch_Expensive.png",
+      "description": "You never liked athletic sports, or being outside much. But long nights of reading fit you perfectly!",
+      "bonuses": [
+        {
+          "trait": "combat",
+          "modifier": -2
+        },
+        {
+          "trait": "nature",
+          "modifier": -1
+        },
+        {
+          "trait": "spooky",
+          "modifier": 1
+        },
+        {
+          "trait": "lethargic",
+          "modifier": 2
+        }
+      ]
+    },
+    {
+      "name": "aggressive",
+      "image": "/Images/Couch_Expensive.png",
+      "description": "You love terrorizing folks in the village, staying active, and generally making a nuisance of yourself.",
+      "bonuses": [
+        {
+          "trait": "combat",
+          "modifier": 2
+        },
+        {
+          "trait": "spooky",
+          "modifier": 1
+        },
+        {
+          "trait": "social",
+          "modifier": -1
+        },
+        {
+          "trait": "lethargic",
+          "modifier": -2
+        }
+      ]
+    },
+    {
+      "name": "explorer",
+      "image": "/Images/Couch_Expensive.png",
+      "description": "You love to get outside and find new places. Desk jobs make you cranky... or worse.",
+      "bonuses": [
+        {
+          "trait": "nautical",
+          "modifier": 1
+        },
+        {
+          "trait": "nature",
+          "modifier": 1
+        },
+        {
+          "trait": "lethargic",
+          "modifier": -1
+        }
+      ]
+    }
+  ]
+}

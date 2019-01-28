@@ -1,0 +1,452 @@
+{
+  "Objects": [
+    {
+      "name": "Expensive Bed",
+      "image": "Art/Beds/expensive_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 6,
+      "cost": 400,
+      "description": "A very swanky bed.",
+      "traits": [
+        "queenish",
+        "opulent_theme",
+        "lethargic"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Nature Bed",
+      "image": "Art/Beds/nature_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 3,
+      "cost": 150,
+      "description": "A very natural bed.",
+      "traits": [
+        "nature_theme",
+        "small"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Primitive Bed",
+      "image": "Art/Beds/primitive_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 2,
+      "cost": 100,
+      "description": "A very primitive bed.",
+      "traits": [
+        "primitive_theme",
+        "lethargic"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Spooky Bed",
+      "image": "Art/Beds/spooky_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 4,
+      "cost": 250,
+      "description": "A very spooky bed.",
+      "traits": [
+        "spooky_theme",
+        "small"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Barn",
+      "image": "Art/Dwellings/barn",
+      "sound": "Audio/Audio/Item sounds/Barn",
+      "type": "dwelling",
+      "value": 6,
+      "cost": 400,
+      "description": "A snug barn to keep the wind out.",
+      "traits": [
+        "piggish",
+        "social"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Castle",
+      "image": "Art/Dwellings/castle",
+      "sound": "Audio/Audio/Item sounds/Castle Fanfare",
+      "type": "dwelling",
+      "value": 6,
+      "cost": 500,
+      "description": "A majestic castle",
+      "traits": [
+        "queenish",
+        "knightish",
+        "combat",
+        "social"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Hovel",
+      "image": "Art/Dwellings/hovel",
+      "sound": "Audio/Audio/Item sounds/Hovel",
+      "type": "dwelling",
+      "value": 1,
+      "cost": 100,
+      "description": "A worn hovel",
+      "traits": [
+        "villagerish",
+        "knightish",
+        "cozy_theme"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Treehouse",
+      "image": "Art/Dwellings/treehouse",
+      "sound": "Audio/Audio/Item sounds/Treehouse",
+      "type": "dwelling",
+      "value": 2,
+      "cost": 250,
+      "description": "A tiny space inside a... tree?",
+      "traits": [
+        "pixieish",
+        "small",
+        "nature_theme"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Cave",
+      "image": "Art/Dwellings/cave",
+      "sound": "Audio/Audio/Item sounds/Cave",
+      "type": "dwelling",
+      "value": 2,
+      "cost": 100,
+      "description": "A dry cave.",
+      "traits": [
+        "dragonish",
+        "dragonish",
+        "primitive_theme"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Fireworks",
+      "image": "Art/Recreation/fireworks",
+      "sound": "Audio/Audio/Item sounds/Firecrackers",
+      "type": "recreation",
+      "value": 6,
+      "cost": 300,
+      "description": "Fireworks make any occasion special!",
+      "traits": [
+        "yop_theme",
+        "piggish",
+        "complex"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Dummy",
+      "image": "Art/Recreation/dummy",
+      "sound": "Audio/Audio/Item sounds/Trainingdummy",
+      "type": "recreation",
+      "value": 3,
+      "cost": 200,
+      "description": "Good for working out that anger",
+      "traits": [
+        "knightish",
+        "trollish",
+        "combat"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "CagedVillager",
+      "image": "Art/Recreation/cagedVillager",
+      "sound": "Audio/Audio/Item sounds/Villager In Cage Help!",
+      "type": "recreation",
+      "value": 2,
+      "cost": 200,
+      "description": "Saving that something special for that special day.",
+      "traits": [
+        "dragonnish",
+        "trollish",
+        "combat",
+        "edible"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Chess",
+      "image": "Art/Recreation/chess",
+      "sound": "Audio/Audio/Item sounds/Queen Chess",
+      "type": "recreation",
+      "value": 5,
+      "cost": 250,
+      "description": "The game of kings. And pawns.",
+      "traits": [
+        "queenish",
+        "complex",
+        "combat"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Harp",
+      "image": "Art/Instruments/expensive_instrument",
+      "sound": "Audio/Audio/Item sounds/Harp Strum",
+      "type": "instruments",
+      "value": 7,
+      "cost": 350,
+      "description": "Very soothing. And heavy.",
+      "traits": [
+        "opulent_theme",
+        "complex",
+        "lethargic"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Pipes",
+      "image": "Art/Instruments/nature_instrument",
+      "sound": "Audio/Audio/Item sounds/Pan Flute",
+      "type": "instruments",
+      "value": 2,
+      "cost": 100,
+      "description": "Just the thing for a lively jig.",
+      "traits": [
+        "nature_theme"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Drum",
+      "image": "Art/Instruments/primitive_instrument",
+      "sound": "Audio/Audio/Item sounds/Drum",
+      "type": "instruments",
+      "value": 3,
+      "cost": 150,
+      "description": "Wardrums are always in fashion.",
+      "traits": [
+        "primitive_theme",
+        "combat"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Organ",
+      "image": "Art/Instruments/spooky_instrument",
+      "sound": "Audio/Audio/Item sounds/Spooky Organ",
+      "type": "instruments",
+      "value": 7,
+      "cost": 400,
+      "description": "The organist will see you now.",
+      "traits": [
+        "spooky_theme",
+        "complex",
+        "lethargic"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Treasure",
+      "image": "Art/Addons/treasure_hoard",
+      "sound": "Audio/Audio/Item sounds/Treasure Hoard",
+      "type": "addons",
+      "value": 8,
+      "cost": 500,
+      "description": "Just a big pile of gold.",
+      "traits": [
+        "opulent_theme",
+        "dragonish"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Ballroom",
+      "image": "Art/Addons/ballroom",
+      "sound": "Audio/Audio/Item sounds/Ballroom",
+      "type": "addons",
+      "value": 8,
+      "cost": 450,
+      "description": "Just a big empty space.",
+      "traits": [
+        "opulent_theme",
+        "queenish",
+        "queenish",
+        "knightish",
+        "social"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Shrine",
+      "image": "Art/Addons/pig_shrine",
+      "sound": "Audio/Audio/Item sounds/shrinese",
+      "type": "addons",
+      "value": 5,
+      "cost": 200,
+      "description": "A good place to celebrate.",
+      "traits": [
+        "yop_theme"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Maze",
+      "image": "Art/Landscaping/hedgemaze",
+      "sound": "Audio/Audio/Item sounds/Hedge Maze",
+      "type": "landscape",
+      "value": 4,
+      "cost": 200,
+      "description": "When you're here - you're lost.",
+      "traits": [
+        "queenish",
+        "complex"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Lava",
+      "image": "Art/Landscaping/lava_pit",
+      "sound": "Audio/Audio/Item sounds/Burnt trees",
+      "type": "landscape",
+      "value": 3,
+      "cost": 250,
+      "description": "Is it for swimming?",
+      "traits": [
+        "dragonish",
+        "primitive_theme",
+        "nature_theme"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Garden",
+      "image": "Art/Landscaping/garden",
+      "sound": "Audio/Audio/Item sounds/Garden",
+      "type": "landscape",
+      "value": 2,
+      "cost": 150,
+      "description": "Not a bad start.",
+      "traits": [
+        "villagerish",
+        "edible"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Mud",
+      "image": "Art/Landscaping/mud_landscape",
+      "sound": "Audio/Audio/Item sounds/Mud Puddle",
+      "type": "landscape",
+      "value": 2,
+      "cost": 100,
+      "description": "It's an acquired taste",
+      "traits": [
+        "pigish",
+        "villagerish",
+        "theme_nature"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    }
+  ]
+}
