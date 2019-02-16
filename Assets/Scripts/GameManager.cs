@@ -7,22 +7,48 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] ClientInfoDisplay clientAndBudget;
+    #region fields
+    [SerializeField] ClientInfoDisplay clientAndBudget = null;
 
     private bool firstClient;
-    public int turn;
+    private bool pigYear;
+    [HideInInspector] public int turn;
+    public int maxTurns;
     private int[] currentButtons;
-    public int[] choices;
+    [HideInInspector] public int[] choices;
+    public bool[] eventTurns;
+    private int rollOne, rollTwo;
 
-    public Button b_FirstButton, b_SecondButton, b_ThirdButton, b_ConfirmButton, b_CancelButton;
-    public Text t_FirstButton, t_SecondButton, t_ThirdButton, confirmDescription, confirmMoney, baseItemScore1, baseItemScore2, baseItemScore3;
-    public Image confirmImage;
-    public GameObject confirmPanel;
-    private int confirmButton;
-
+    [Header("Buttons")]
+    public RoundCounter roundCounter;
+    public Button b_FirstButton, b_SecondButton, b_ThirdButton;
+    public Text t_FirstButton, t_SecondButton, t_ThirdButton, baseItemScore1, baseItemScore2, baseItemScore3;
     public Text ItemOneCost, ItemTwoCost, ItemThreeCost;
 
-    public RoundCounter roundCounter;
+    [Header("Confirm Panel")]
+    public Image confirmImage;
+    public GameObject confirmPanel, confirmValueObject;
+    public Button b_ConfirmButton, b_CancelButton;
+    public Text confirmDescription, confirmMoney, confirmButtonText, confirmValue;
+    private int confirmButton;
+
+    [Header("Event Panel")]
+    public Image eventImage;
+    public GameObject eventPanel;
+    public Button b_EventButtonOne, b_EventButtonTwo;
+    public Text eventDescription, eventMoney;
+    private int eventButton;
+
+    [Header("Event Confirm Panel")]
+    public Image eventConfirmImage;
+    public GameObject eventConfirmPanel;
+    public GameObject eventConfirmMoneyPanel;
+    public Button b_EventConfirmButton;
+    public Text eventConfirmDescription, eventConfirmMoney;
+
+    private int eventConfirmButton;
+    private int eventPercentChance = 25;
+    private Event currentEvent;
 
     private objectDef buttonOneObj;
     private objectDef buttonTwoObj;
@@ -32,18 +58,34 @@ public class GameManager : MonoBehaviour
     private Client buttonTwoClient;
     private Client buttonThreeClient;
 
-    private List<objectDef> EntireObjectList;
-    private List<Trait> AllTraits;
     private Dictionary<string, List<objectDef>> categoryDict = new Dictionary<string, List<objectDef>>();
+    private List<string> permittedCategorites = new List<string>();
 
-    // Start is called before the first frame update
-    void Awake()
+#endregion
+
+    private void Awake()
     {
+        // assign categories to dict
+        foreach (var item in Data.Objects)
+        {
+            if (!categoryDict.ContainsKey(item.type))
+            {
+                categoryDict.Add(item.type, new List<objectDef> { item });
+                permittedCategorites.Add(item.type);
+            }
+            else categoryDict[item.type].Add(item);
+        }
+
+        maxTurns = categoryDict.Count-2;
+        Debug.Log(maxTurns);
         // Initialize variables
         firstClient = true;
+        pigYear = true;
+        rollOne = -1;
+        rollTwo = -1;
         turn = 0;
         currentButtons = new int[3];
-        choices = new int[5];
+        choices = new int[maxTurns+1];
 
         // Initializes Button Listeners
         b_FirstButton.onClick.AddListener(OptionOne);
@@ -51,28 +93,21 @@ public class GameManager : MonoBehaviour
         b_ThirdButton.onClick.AddListener(OptionThree);
         b_ConfirmButton.onClick.AddListener(ConfirmButton);
         b_CancelButton.onClick.AddListener(CancelButton);
+        b_EventButtonOne.onClick.AddListener(EventButtonOne);
+        b_EventButtonTwo.onClick.AddListener(EventButtonTwo);
+        b_EventConfirmButton.onClick.AddListener(EventConfirmButton);
 
+        // Initialize roundCounter
+        roundCounter.UpdateRound(0);
+    }
+    
+    // Start is called before the first frame update
+    void Start()
+    {
         // Initialize First Buttons
         NewClients(0);
         NewClients(1);
         NewClients(2);
-
-        // init roundCounter
-        roundCounter.UpdateRound(0);
-
-        //get all objects
-        EntireObjectList = ObjectLists.GetFromJson("Objects.json").Objects;
-
-        // assign categories to dict
-        foreach(var item in EntireObjectList)
-        {
-            if (!categoryDict.ContainsKey(item.type)) categoryDict.Add(item.type, new List<objectDef>{ item });
-            else categoryDict[item.type].Add(item);
-        }
-        Debug.Log(categoryDict);
-
-        // all traits
-        AllTraits = TraitLists.GetFromJson("Traits.json").Traits;
     }
 
     // Clickable buttons
@@ -93,7 +128,13 @@ public class GameManager : MonoBehaviour
 
     // Next Turn
     void NextTurn(int button)
-    {
+    {   
+        if (turn >= maxTurns)
+        {
+            EnterScene("Score");
+            return;
+        }
+
         // pick a client
         Debug.Log("Clicked button " + button);
         if (firstClient == true)
@@ -113,9 +154,8 @@ public class GameManager : MonoBehaviour
                 PlayerInfoDisplay.player.client = buttonThreeClient;
                 clientAndBudget.UpdateClientAndBudget(int.Parse(ItemThreeCost.text));
             }
-
+            
             Debug.Log("Chose client " + PlayerInfoDisplay.player.client.name);
-            firstClient = false;
         }
         else
         {   // pick an item
@@ -134,32 +174,66 @@ public class GameManager : MonoBehaviour
                 PlayerInfoDisplay.player.chosenItems.Add(buttonThreeObj);
                 clientAndBudget.UpdateBudget(-int.Parse(ItemThreeCost.text));
             }
-            Debug.Log("Chose an item");
+            var p = PlayerInfoDisplay.player;
+
+            // is the client happy?
+            if (p.LikesItem(p.chosenItems[p.chosenItems.Count - 1]))
+            {
+                clientAndBudget.UpdateClientImage(p.client.image + "_happy"); // shhh I didn't want to update the data model
+            }
+            else
+            {
+                clientAndBudget.UpdateClientImage(p.client.image);
+            }
+        }
+        // Spawn event
+        if (turn > 0)
+        {
+            var eventRoll = Random.Range(0, 100);
+            if (eventRoll > eventPercentChance)
+            {
+                eventPercentChance += 25;
+            }
+            else
+            {
+                LoadEvent();
+                eventPercentChance = 25;
+            }
+
+            roundCounter.UpdateRound(turn + 1);
+        }
+
+        if (firstClient)
+        {
+            firstClient = false;
+        }
+        if (!firstClient && turn == 0)
+        {
+            roundCounter.UpdateRound(1);
+            turn += 1;
+        }
+        else
+        {
+            turn += 1;
         }
 
         // Store the current selection
         StoreChoices(button);
 
         // pick object list for a new category
-        int rn = Random.Range(0, categoryDict.Count - 1);
-        var values = Enumerable.ToList(categoryDict.Values);
-        var objectsInCategory = values[rn];
+        int rn = Random.Range(0, permittedCategorites.Count);
+        var cat = permittedCategorites[rn];
+        var objectsInCategory = categoryDict[cat];
+        permittedCategorites.Remove(cat);
+        Debug.Log("Removed Category: " + cat);
 
         // Reroll new buttons
         for (int b = 0; b < 3; b++)
         {
             ChangeButton(b, objectsInCategory);
         }
-
-        // Increment turns
-        turn += 1;
-        if (turn >= 5)
-        {
-            EnterScene("Score");
-        }
-        roundCounter.UpdateRound(turn+1);
     }
-
+     
     // Initiates button change
     void ChangeButton(int button, List<objectDef> objectsincat)
     {
@@ -176,9 +250,11 @@ public class GameManager : MonoBehaviour
     // Changes Button Text and Image
     void ChangeButtonTextAndImage(int button, int rng, List<objectDef> objectsincat)
     {
-        var rn = Random.Range(0, categoryDict.Count - 1);
-        var currentObject = objectsincat[Random.Range(0, objectsincat.Count - 1)];
-        Debug.Log(currentObject.image);
+        var rn = Random.Range(0, categoryDict.Count-1);
+        objectDef currentObject = null;
+        if (objectsincat.Count > 1) currentObject = objectsincat[Random.Range(0, objectsincat.Count - 1)];
+        else currentObject = objectsincat[0];
+        Debug.LogWarning(objectsincat.Count);
         var TraitIcons = new List<Image>();
 
         switch (button)
@@ -188,9 +264,9 @@ public class GameManager : MonoBehaviour
                 b_FirstButton.GetComponent<Image>().sprite = Resources.Load<Sprite>(currentObject.image);
                 b_FirstButton.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>(currentObject.sound);
                 buttonOneObj = currentObject;
+                objectsincat.Remove(currentObject);
                 ItemOneCost.text = currentObject.cost.ToString();
                 baseItemScore1.text = currentObject.value.ToString();
-
                 TraitIcons = b_FirstButton.GetComponent<TraitHolder>().Traits;
                 SetUpTraitIcons(TraitIcons, currentObject);
                 break;
@@ -199,9 +275,9 @@ public class GameManager : MonoBehaviour
                 b_SecondButton.GetComponent<Image>().sprite = Resources.Load<Sprite>(currentObject.image);
                 b_SecondButton.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>(currentObject.sound);
                 buttonTwoObj = currentObject;
+                objectsincat.Remove(currentObject);
                 ItemTwoCost.text = currentObject.cost.ToString();
                 baseItemScore2.text = currentObject.value.ToString();
-
                 TraitIcons = b_SecondButton.GetComponent<TraitHolder>().Traits;
                 SetUpTraitIcons(TraitIcons, currentObject);
                 break;
@@ -210,9 +286,9 @@ public class GameManager : MonoBehaviour
                 b_ThirdButton.GetComponent<Image>().sprite = Resources.Load<Sprite>(currentObject.image);
                 b_ThirdButton.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>(currentObject.sound);
                 buttonThreeObj = currentObject;
+                objectsincat.Remove(currentObject);
                 ItemThreeCost.text = currentObject.cost.ToString();
                 baseItemScore3.text = currentObject.value.ToString();
-
                 TraitIcons = b_ThirdButton.GetComponent<TraitHolder>().Traits;
                 SetUpTraitIcons(TraitIcons, currentObject);
                 break;
@@ -235,7 +311,7 @@ public class GameManager : MonoBehaviour
     // Random Number Generator
     int RandomNumberGenerator()
     {
-        var currentObject = ObjectLists.GetFromJson("Objects.json").Objects.Count;
+        var currentObject = Data.Objects.Count;
         int rng = Random.Range(0, currentObject);
         return rng;
     }
@@ -243,10 +319,23 @@ public class GameManager : MonoBehaviour
     // New Client
     void NewClients(int button)
     {
-        var objectCount = ClientLists.GetFromJson("Clients.json").Clients.Count;
+        var objectCount = Data.Clients.Count;
         int rng = Random.Range(0, objectCount);
 
-        var currentObject = ClientLists.GetFromJson("Clients.json").Clients[rng];
+        while (rng == rollOne || rng == rollTwo) { rng = Random.Range(0, objectCount); }
+
+        var currentObject = Data.Clients[rng];
+
+        if (rollOne > 0 && rollTwo < 0) { rollTwo = rng;}
+        if (rollOne < 0) { rollOne = rng;}
+
+        // reset first object for Year of the Pig
+        if (pigYear)
+        {
+            currentObject = Data.Clients[4];
+            pigYear = false;
+            rollOne = 4;
+        }
 
         switch (button)
         {
@@ -273,6 +362,8 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    // Confirm Panel Stuff -----------------------------
 
     // Show confirmation panel
     void LoadConfirmation(int button)
@@ -307,42 +398,141 @@ public class GameManager : MonoBehaviour
                 confirmImage.GetComponent<Image>().sprite = Resources.Load<Sprite>(buttonOneClient.image);
                 confirmDescription.text = buttonOneClient.description;
                 confirmMoney.text = ItemOneCost.text;
+                confirmButtonText.text = "Choose Client";
             }
             else if (button == 1)
             {
                 confirmImage.GetComponent<Image>().sprite = Resources.Load<Sprite>(buttonTwoClient.image);
                 confirmDescription.text = buttonTwoClient.description;
                 confirmMoney.text = ItemTwoCost.text;
+                confirmButtonText.text = "Choose Client";
             }
             else
             {
                 confirmImage.GetComponent<Image>().sprite = Resources.Load<Sprite>(buttonThreeClient.image);
                 confirmDescription.text = buttonThreeClient.description;
                 confirmMoney.text = ItemThreeCost.text;
+                confirmButtonText.text = "Choose Client";
             }
         }
         else
         {
+            var TraitIcons = confirmPanel.GetComponent<TraitHolder>().Traits;
+            confirmValueObject.SetActive(true);
             if (button == 0)
             {
                 confirmImage.GetComponent<Image>().sprite = Resources.Load<Sprite>(buttonOneObj.image);
                 confirmDescription.text = buttonOneObj.description;
                 confirmMoney.text = ItemOneCost.text;
+                confirmValue.text = buttonOneObj.value.ToString();
+                confirmButtonText.text = "Confirm Purchase";
+                SetUpTraitIcons(TraitIcons, buttonOneObj);
             }
             else if (button == 1)
             {
                 confirmImage.GetComponent<Image>().sprite = Resources.Load<Sprite>(buttonTwoObj.image);
                 confirmDescription.text = buttonTwoObj.description;
                 confirmMoney.text = ItemTwoCost.text;
+                confirmValue.text = buttonTwoObj.value.ToString();
+                confirmButtonText.text = "Confirm Purchase";
+                SetUpTraitIcons(TraitIcons, buttonTwoObj);
             }
             else
             {
                 confirmImage.GetComponent<Image>().sprite = Resources.Load<Sprite>(buttonThreeObj.image);
                 confirmDescription.text = buttonThreeObj.description;
                 confirmMoney.text = ItemThreeCost.text;
+                confirmValue.text = buttonThreeObj.value.ToString();
+                confirmButtonText.text = "Confirm Purchase";
+                SetUpTraitIcons(TraitIcons, buttonThreeObj);
             }
         }
     }
+
+    // Event Panel Stuff --------------------------------
+
+    // Show Event panel
+    void LoadEvent()
+    {
+        var rn = Random.Range(0, Data.Events.Count);
+        currentEvent = Data.Events[rn];
+        eventDescription.text = currentEvent.description;
+        b_EventButtonOne.GetComponentInChildren<Text>().text = currentEvent.button1;
+        b_EventButtonTwo.GetComponentInChildren<Text>().text = currentEvent.button2;
+        eventPanel.SetActive(true);
+    }
+
+    // First Event Option
+    public void EventButtonOne()
+    {
+        if (!currentEvent.buttonMatters)
+        {
+            eventConfirmMoneyPanel.SetActive(true);
+            Data.Results[currentEvent.name]();
+            clientAndBudget.UpdateBudget(-currentEvent.cost);
+        }
+
+        if (currentEvent.name == "donation")
+        {
+            clientAndBudget.UpdateBudget(-currentEvent.cost);
+        }
+        
+        eventConfirmMoney.text = currentEvent.cost.ToString();
+        eventPanel.SetActive(false);
+        eventConfirmPanel.SetActive(true);
+    }
+
+    // Second Event Option
+    public void EventButtonTwo()
+    {
+        // special conditions can't handle in the data initializer
+        if (currentEvent.name == "buyback")
+        {
+            var lastItem = PlayerInfoDisplay.player.chosenItems[PlayerInfoDisplay.player.chosenItems.Count - 1];
+            permittedCategorites.Add(lastItem.type);
+            clientAndBudget.UpdateBudget(currentEvent.cost);
+            clientAndBudget.UpdateBudget(currentEvent.cost);
+        }
+        if (currentEvent.name == "amnesia")
+        {
+            var newlist = new List<string>();
+            foreach(var key in categoryDict.Keys) { newlist.Add(key); }
+            permittedCategorites = newlist;
+        }
+        if (currentEvent.name == "donation")
+        {
+            maxTurns++;
+            var newchoices = new int[maxTurns+1];
+            for (int i = 0; i < choices.Length; i++)
+            {
+                newchoices[i] = choices[i];
+            }
+            choices = newchoices;
+        }
+
+        // function
+        Data.Results[currentEvent.name]();
+        clientAndBudget.UpdateBudget(-currentEvent.cost);
+        eventConfirmMoneyPanel.SetActive(true);
+        eventConfirmMoney.text = currentEvent.cost.ToString();
+
+        if (currentEvent.name == "donation")
+        {
+            clientAndBudget.UpdateBudget(-currentEvent.cost);
+            eventConfirmMoney.text = "400";
+        }
+
+        eventPanel.SetActive(false);
+        eventConfirmPanel.SetActive(true);
+    }
+
+    // Event Confirm button
+    private void EventConfirmButton()
+    {
+        eventConfirmMoneyPanel.SetActive(false);
+        eventConfirmPanel.SetActive(false);
+    }
+
     //-------------------------------------------------
     // call this from any script
     public static void EnterScene(string sceneName)
@@ -350,14 +540,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    int GenerateRandomItemCost()
-    {
-        return Random.Range(5, 70)*10; // shrug emoji
-    }
-
     int GenerateRandomBudget()
     {
-        return Random.Range(80, 160) * 10; // shrug emoji
+        return 1000; // shrug emoji
     }
 
     void SetUpTraitIcons(List<Image> TraitIcons, objectDef currentObject)
@@ -366,7 +551,7 @@ public class GameManager : MonoBehaviour
         {
             if (i < currentObject.traits.Count)
             {
-                foreach (var trait in AllTraits)
+                foreach (var trait in Data.Traits)
                 {
                     if (trait.name == currentObject.traits[i])
                     {

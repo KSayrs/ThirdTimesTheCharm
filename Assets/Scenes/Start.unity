@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 320899427}
   - component: {fileID: 320899426}
   - component: {fileID: 320899425}
+  - component: {fileID: 320899428}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -402,7 +403,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.485
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -510,6 +511,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &320899428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320899424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c8e697dfe89ee46b5d0a6e3aa6f9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Jsons:
+  - {fileID: 11400000, guid: 461473b6e9530cd47b5aca71a88878a1, type: 2}
+  - {fileID: 11400000, guid: b6fec6040903bf94089a34525e51ba6b, type: 2}
+  - {fileID: 11400000, guid: 039233a7f8b69904882bc7f2607c66c7, type: 2}
+  - {fileID: 11400000, guid: 0c5c61f899b42e84b88feb7b1db34d80, type: 2}
+  - {fileID: 11400000, guid: 6ff17394f8285c646bf77ccc8974bea1, type: 2}
 --- !u!1 &391500702
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class ScoreTally : MonoBehaviour
 {
     #region Serialized Variables
-
+    #pragma warning disable
     [SerializeField] Text BaseItemScore;
     [SerializeField] Text MatchBonus;
     [SerializeField] Text BriefFulfillment;
@@ -59,27 +59,27 @@ public class ScoreTally : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         textObject.gameObject.SetActive(true);
         EndGameText.gameObject.SetActive(true);
-        if (totalScore <= 4)
+        if (totalScore <= 14)
         {
             EndGameText.text = "Terrible!";
             audioSource.clip = loseclip;
         }
-        else if (totalScore <= 9)
+        else if (totalScore <= 19)
         {
             EndGameText.text = "Keep your Head!";
             audioSource.clip = winclip;
         }
-        else if (totalScore <= 13)
+        else if (totalScore <= 22)
         {
             EndGameText.text = "Cool!";
             audioSource.clip = winclip;
         }
-        else if (totalScore >= 15)
+        else if (totalScore <= 24)
         {
             EndGameText.text = "Excellent!";
             audioSource.clip = winclip;
         }
-        else if (totalScore >= 15)
+        else if (totalScore >= 25)
         {
             EndGameText.text = "Fashionista!";
             audioSource.clip = winclip;
@@ -114,16 +114,13 @@ public class ScoreTally : MonoBehaviour
 
         for (int i=0; i< PlayerInfoDisplay.player.chosenItems.Count; i++)
         {
-            Debug.Log(PlayerInfoDisplay.player.chosenItems[i].name);
             var currentTraits = PlayerInfoDisplay.player.chosenItems[i].traits;
             foreach (var trait in currentTraits)
             {
-                Debug.Log(trait);
                 if (!traitCount.ContainsKey(trait)) traitCount.Add(trait, 0);
                 else traitCount[trait]++;
 
                 var clientBonuses = PlayerInfoDisplay.player.client.bonuses;
-                Debug.Log("Client: " + PlayerInfoDisplay.player.client.name);
                 foreach (var bonus in clientBonuses)
                 {
                     if (trait == bonus.trait)

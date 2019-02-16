@@ -1,0 +1,221 @@
+{
+	"Clients":[
+    {
+      "name": "Dragon",
+      "image": "Art/Characters/dragon",
+      "sound": "Audio/Audio/Character Sounds/Dragon",
+      "description": "Dragons like to live in caves, sleep on treasure hordes, and repose in a charred forest.",
+      "trait": "Dragons love items that accomodate their grand nature, but hate confined quarters.",
+      "bonuses": [
+        {
+          "trait": "dragon",
+          "modifier": 1
+        },
+        {
+          "trait": "edible",
+          "modifier": 1
+        },
+        {
+          "trait": "small",
+          "modifier": -1
+        }
+      ],
+      "allowed_interests": [
+        "aggressive",
+        "explorer",
+        "caring"
+      ]
+    },
+    {
+      "name": "Queen",
+      "image": "Art/Characters/queen",
+      "sound": "Audio/Audio/Character Sounds/Queen Greeting",
+      "description": "Queens live to live in castles, sleep in overstuffed beds, and throw tea parties in a hedge maze.",
+      "trait": "The Queen has superior appreciation for aesthetics. She receives double bonus (or penalty!) for theme.",
+      "bonuses": [
+        {
+          "trait": "queen",
+          "modifier": 1
+        },
+        {
+          "trait": "opulent",
+          "modifier": 1
+        }
+      ],
+      "allowed_interests": [
+        "aggressive",
+        "studious",
+        "caring",
+        "hoarder"
+      ]
+    },
+    {
+      "name": "Ghost",
+      "image": "Art/Characters/ghost",
+      "sound": "Audio/Audio/Character Sounds/Ghost",
+      "description": "Ghosts like to live in run-down shacks, sleep in the attic, and relax in a swamp.",
+      "trait": "Ghosts have few physical needs, and like wide open spaces.,",
+      "bonuses": [
+        {
+          "trait": "ghost",
+          "modifier": 1
+        },
+        {
+          "trait": "spooky",
+          "modifier": 1
+        },
+        {
+          "trait": "social",
+          "modifier": -1
+        }
+      ],
+      "allowed_interests": [
+        "aggressive",
+        "explorer",
+        "hoarder"
+      ]
+    },
+    {
+      "name": "Villager",
+      "image": "Art/Characters/villager",
+      "sound": "Audio/Audio/Character Sounds/Villager",
+      "description": "Villagers love making it through a day without being eaten or beheaded.",
+      "trait": "Villagers often have a prized item, which they covet dearly.",
+      "bonuses": [
+        {
+          "trait": "villager",
+          "modifier": 1
+        },
+        {
+          "trait": "cozy",
+          "modifier": 1
+        },
+        {
+          "trait": "opulent",
+          "modifier": -1
+        }
+      ],
+      "allowed_interests": [
+        "aggressive",
+        "explorer",
+        "hoarder"
+      ]
+    },
+    {
+      "name": "Pig",
+      "image": "Art/Characters/pigs",
+      "sound": "Audio/Audio/Character Sounds/Pigs",
+      "description": "Pigs are very social, and hate to be alone. 2019 is their year!",
+      "trait": "Pigs don't care much for fancy or complex things.",
+      "bonuses": [
+        {
+          "trait": "pig",
+          "modifier": 1
+        },
+        {
+          "trait": "year of the pig",
+          "modifier": 1
+        },
+        {
+          "trait": "social",
+          "modifier": 1
+        },
+        {
+          "trait": "complex",
+          "modifier": -1
+        }
+      ],
+      "allowed_interests": [
+        "aggressive",
+        "explorer",
+        "hoarder"
+      ]
+    },
+    {
+      "name": "Pixie",
+      "image": "Art/Characters/pixie",
+      "sound": "Audio/Audio/Character Sounds/Pixie",
+      "description": "Pixies live in hollow trees or burrows, and love to frolick.",
+      "trait": "Pixies are very small, and don't need large quantities of anything.",
+      "bonuses": [
+        {
+          "trait": "pixie",
+          "modifier": 1
+        },
+        {
+          "trait": "nature",
+          "modifier": 1
+        },
+        {
+          "trait": "small",
+          "modifier": 1
+        },
+        {
+          "trait": "combat",
+          "modifier": 1
+        }
+      ],
+      "allowed_interests": [
+        "aggressive",
+        "explorer",
+        "hoarder"
+      ]
+    },
+    {
+      "name": "Troll",
+      "image": "Art/Characters/troll",
+      "sound": "Audio/Audio/Character Sounds/Troll",
+      "description": "Trolls live under bridges or in castles, and live beatifully simple lives.",
+      "trait": "Trolls can eat almost anything, and love the outdoors.",
+      "bonuses": [
+        {
+          "trait": "troll",
+          "modifier": 1
+        },
+        {
+          "trait": "primitive",
+          "modifier": 1
+        },
+        {
+          "trait": "edible",
+          "modifier": 2
+        },
+        {
+          "trait": "complex",
+          "modifier": -1
+        },
+        {
+          "trait": "social",
+          "modifier": -2
+        },
+        {
+          "trait": "nature",
+          "modifier": 1
+        }
+      ],
+      "allowed_interests": [
+        "aggressive",
+        "explorer",
+        "hoarder"
+      ]
+    },
+    {
+      "name": "Knight",
+      "image": "Art/Characters/knight",
+      "sound": "Audio/Audio/Character Sounds/Knight",
+      "description": "Knights are very uptight, judgemental, but also pretty stacked.",
+      "trait": "Knights do well with discipline and clear boundaries.",
+      "bonuses": [
+        {
+          "trait": "knight",
+          "modifier": 1
+        }
+      ],
+      "allowed_interests": [
+        "aggressive",
+        "explorer",
+        "hoarder"
+      ]
+    }
+	]
+}

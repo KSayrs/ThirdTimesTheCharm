@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static Player player;
-
     static bool created = false;
     void Awake()
     {
@@ -17,6 +15,7 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             created = true;
         }
+
         else Destroy(gameObject);
     }
 }

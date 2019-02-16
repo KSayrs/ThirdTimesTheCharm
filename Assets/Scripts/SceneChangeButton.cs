@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SceneChangeButton : MonoBehaviour
 {
-    [SerializeField] string SceneNameToChangeTo;
+    [SerializeField] string SceneNameToChangeTo = "";
     private Button button;
 
     void Start()

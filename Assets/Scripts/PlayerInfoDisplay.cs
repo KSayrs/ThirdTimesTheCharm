@@ -31,4 +31,21 @@ public class Player
         client = null;
         budget = 0;
     }
+
+    public bool LikesItem(objectDef item)
+    {
+        int clientHappiness = 0;
+        foreach (var trait in item.traits)
+        {
+            foreach (var bonus in client.bonuses)
+            {
+                if (trait == bonus.trait)
+                {
+                    clientHappiness += bonus.modifier;
+                }
+            }
+        }
+
+        return clientHappiness > 0;
+    }
 }

@@ -713,7 +713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.3, y: 128.6}
+  m_AnchoredPosition: {x: 10.3, y: 124}
   m_SizeDelta: {x: 1016.8, y: 1578.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1352237186
@@ -738,7 +738,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 02afb3b76d2afab4e81460471d8f9a5d, type: 3}
-    m_FontSize: 79
+    m_FontSize: 86
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -748,7 +748,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 0.85
   m_Text: "In \u201CThird Time\u2019s the Charm!\u201D you are a decorator in a fantasy
     land. You select a client, and attempt to maximize your score by purchasing items
     aligned with that client\u2019s interest.\r\n\r\nEach round you will be presented

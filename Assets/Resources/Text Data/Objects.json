@@ -1,0 +1,758 @@
+{
+  "Objects": [
+    {
+      "name": "Expensive Bed",
+      "image": "Art/Beds/expensive_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 5,
+      "cost": 400,
+      "description": "A very swanky bed.",
+      "traits": [
+        "queen",
+        "opulent",
+        "lethargic"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Refurbished Bed",
+      "image": "Art/Beds/expensive_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 4,
+      "cost": 350,
+      "description": "A refurbished swanky bed.",
+      "traits": [
+        "queen",
+        "lethargic"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Nature Bed",
+      "image": "Art/Beds/nature_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 3,
+      "cost": 150,
+      "description": "A very natural bed. Tiny sized.",
+      "traits": [
+        "nature",
+        "small"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Large Bed",
+      "image": "Art/Beds/nature_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 4,
+      "cost": 350,
+      "description": "A very natural bed.",
+      "traits": [
+        "nature",
+        "small"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Primitive Bed",
+      "image": "Art/Beds/primitive_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 2,
+      "cost": 100,
+      "description": "A very primitive bed.",
+      "traits": [
+        "primitive",
+        "lethargic"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "War Bed",
+      "image": "Art/Beds/primitive_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 2,
+      "cost": 200,
+      "description": "A bed built for warriors.",
+      "traits": [
+        "primitive",
+        "lethargic",
+        "combat"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Spooky Bed",
+      "image": "Art/Beds/spooky_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 4,
+      "cost": 250,
+      "description": "A very spooky bed.",
+      "traits": [
+        "spooky",
+        "small"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Drowned Bed",
+      "image": "Art/Beds/spooky_bed1",
+      "sound": "Audio/Audio/Item sounds/Bed",
+      "type": "bed",
+      "value": 3,
+      "cost": 250,
+      "description": "A waterlogged bed.",
+      "traits": [
+        "spooky",
+        "small",
+        "nautical"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Barn",
+      "image": "Art/Dwellings/barn",
+      "sound": "Audio/Audio/Item sounds/Barn",
+      "type": "dwelling",
+      "value": 6,
+      "cost": 400,
+      "description": "A snug barn to keep the wind out.",
+      "traits": [
+        "pig",
+        "social"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Castle",
+      "image": "Art/Dwellings/castle",
+      "sound": "Audio/Audio/Item sounds/Castle Fanfare",
+      "type": "dwelling",
+      "value": 6,
+      "cost": 500,
+      "description": "A majestic castle",
+      "traits": [
+        "queen",
+        "knight",
+        "combat",
+        "social"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Model Castle",
+      "image": "Art/Dwellings/castle",
+      "sound": "Audio/Audio/Item sounds/Castle Fanfare",
+      "type": "dwelling",
+      "value": 1,
+      "cost": 100,
+      "description": "A scale model of a majestic castle",
+      "traits": [
+        "queen",
+        "knight",
+        "small"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Hovel",
+      "image": "Art/Dwellings/hovel",
+      "sound": "Audio/Audio/Item sounds/Hovel",
+      "type": "dwelling",
+      "value": 1,
+      "cost": 100,
+      "description": "A worn hovel",
+      "traits": [
+        "villager",
+        "knight",
+        "cozy"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Muddy Hovel",
+      "image": "Art/Dwellings/hovel",
+      "sound": "Audio/Audio/Item sounds/Hovel",
+      "type": "dwelling",
+      "value": 1,
+      "cost": 100,
+      "description": "A worn hovel covered in mud",
+      "traits": [
+        "villager",
+        "pig",
+        "cozy"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Treehouse",
+      "image": "Art/Dwellings/treehouse",
+      "sound": "Audio/Audio/Item sounds/Treehouse",
+      "type": "dwelling",
+      "value": 2,
+      "cost": 250,
+      "description": "A tiny space inside a... tree?",
+      "traits": [
+        "pixie",
+        "small",
+        "nature"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Cave",
+      "image": "Art/Dwellings/cave",
+      "sound": "Audio/Audio/Item sounds/Cave",
+      "type": "dwelling",
+      "value": 2,
+      "cost": 100,
+      "description": "A dry cave.",
+      "traits": [
+        "dragon",
+        "dragon",
+        "primitive"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Fireworks",
+      "image": "Art/Recreation/fireworks",
+      "sound": "Audio/Audio/Item sounds/Firecrackers",
+      "type": "recreation",
+      "value": 5,
+      "cost": 300,
+      "description": "Fireworks make any occasion special!",
+      "traits": [
+        "year of the pig",
+        "pig",
+        "complex"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Dummy",
+      "image": "Art/Recreation/dummy",
+      "sound": "Audio/Audio/Item sounds/Trainingdummy",
+      "type": "recreation",
+      "value": 3,
+      "cost": 200,
+      "description": "Good for working out that anger",
+      "traits": [
+        "knight",
+        "troll",
+        "combat"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "CagedVillager",
+      "image": "Art/Recreation/cagedVillager",
+      "sound": "Audio/Audio/Item sounds/Villager In Cage Help!",
+      "type": "recreation",
+      "value": 2,
+      "cost": 200,
+      "description": "Saving that something special for that special day.",
+      "traits": [
+        "dragon",
+        "troll",
+        "combat",
+        "edible"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Chess",
+      "image": "Art/Recreation/chess",
+      "sound": "Audio/Audio/Item sounds/Queen Chess",
+      "type": "recreation",
+      "value": 5,
+      "cost": 250,
+      "description": "The game of kings. And pawns.",
+      "traits": [
+        "queen",
+        "complex",
+        "combat"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Harp",
+      "image": "Art/Instruments/expensive_instrument",
+      "sound": "Audio/Audio/Item sounds/Harp Strum",
+      "type": "instruments",
+      "value": 7,
+      "cost": 350,
+      "description": "Very soothing. And heavy.",
+      "traits": [
+        "opulent",
+        "complex",
+        "lethargic"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Pipes",
+      "image": "Art/Instruments/nature_instrument",
+      "sound": "Audio/Audio/Item sounds/Pan Flute",
+      "type": "instruments",
+      "value": 2,
+      "cost": 100,
+      "description": "Just the thing for a lively jig.",
+      "traits": [
+        "nature"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Drum",
+      "image": "Art/Instruments/primitive_instrument",
+      "sound": "Audio/Audio/Item sounds/Drum",
+      "type": "instruments",
+      "value": 3,
+      "cost": 150,
+      "description": "Wardrums are always in fashion.",
+      "traits": [
+        "primitive",
+        "combat"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Organ",
+      "image": "Art/Instruments/spooky_instrument",
+      "sound": "Audio/Audio/Item sounds/Spooky Organ",
+      "type": "instruments",
+      "value": 7,
+      "cost": 400,
+      "description": "The organist will see you now.",
+      "traits": [
+        "spooky",
+        "complex",
+        "lethargic"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Treasure",
+      "image": "Art/Addons/treasure_hoard",
+      "sound": "Audio/Audio/Item sounds/Treasure Hoard",
+      "type": "addons",
+      "value": 8,
+      "cost": 500,
+      "description": "Just a big pile of gold.",
+      "traits": [
+        "opulent",
+        "dragon"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Fake Treasure",
+      "image": "Art/Addons/treasure_hoard",
+      "sound": "Audio/Audio/Item sounds/Treasure Hoard",
+      "type": "addons",
+      "value": 4,
+      "cost": 300,
+      "description": "Just a pile of gold.",
+      "traits": [
+        "opulent",
+        "dragon"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Ballroom",
+      "image": "Art/Addons/ballroom",
+      "sound": "Audio/Audio/Item sounds/Ballroom",
+      "type": "addons",
+      "value": 8,
+      "cost": 450,
+      "description": "Just a big empty space.",
+      "traits": [
+        "opulent",
+        "queen",
+        "queen",
+        "knight",
+        "social"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Hearth",
+      "image": "Art/New/hearth",
+      "sound": "Audio/Audio/Item sounds/Ballroom",
+      "type": "addons",
+      "value": 3,
+      "cost": 200,
+      "description": "A cozy fireplace for the family.",
+      "traits": [
+        "cozy",
+        "cozy",
+        "villager",
+        "social"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Shrine",
+      "image": "Art/Addons/pig_shrine",
+      "sound": "Audio/Audio/Item sounds/shrinese",
+      "type": "addons",
+      "value": 4,
+      "cost": 200,
+      "description": "A good place to celebrate.",
+      "traits": [
+        "year of the pig"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Maze",
+      "image": "Art/Landscaping/hedgemaze",
+      "sound": "Audio/Audio/Item sounds/Hedge Maze",
+      "type": "landscape",
+      "value": 4,
+      "cost": 200,
+      "description": "When you're here - you're lost.",
+      "traits": [
+        "queen",
+        "complex"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Rock",
+      "image": "Art/New/uglyrock",
+      "sound": "Audio/Audio/Item sounds/Burnt trees",
+      "type": "landscape",
+      "value": 1,
+      "cost": 100,
+      "description": "Not even a very nice rock, frankly",
+      "traits": [
+        "troll",
+        "primitive",
+        "troll",
+        "nature"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Cloverfield",
+      "image": "Art/New/cloverfield",
+      "sound": "Audio/Audio/Item sounds/Mud Puddle",
+      "type": "landscape",
+      "value": 2,
+      "cost": 200,
+      "description": "Empty, except for the clover.",
+      "traits": [
+        "pig",
+        "villager",
+        "nature"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Garden",
+      "image": "Art/Landscaping/garden",
+      "sound": "Audio/Audio/Item sounds/Garden",
+      "type": "landscape",
+      "value": 2,
+      "cost": 150,
+      "description": "Not a bad start.",
+      "traits": [
+        "villager",
+        "edible"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Mud",
+      "image": "Art/Landscaping/mud_landscape",
+      "sound": "Audio/Audio/Item sounds/Mud Puddle",
+      "type": "bathing",
+      "value": 2,
+      "cost": 100,
+      "description": "It's an acquired taste",
+      "traits": [
+        "pig",
+        "villager",
+        "theme_nature"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Lava",
+      "image": "Art/Landscaping/lava_pit",
+      "sound": "Audio/Audio/Item sounds/Burnt trees",
+      "type": "bathing",
+      "value": 3,
+      "cost": 250,
+      "description": "Is it for swimming?",
+      "traits": [
+        "dragon",
+        "primitive",
+        "nature"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Bathtub",
+      "image": "Art/New/bathtub",
+      "sound": "Audio/Audio/Item sounds/Burnt trees",
+      "type": "bathing",
+      "value": 4,
+      "cost": 500,
+      "description": "A claw-footed bathtub.",
+      "traits": [
+        "queen",
+        "knight",
+        "opulent",
+        "villager",
+        "complex"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Waterfall",
+      "image": "Art/New/waterfall",
+      "sound": "Audio/Audio/Item sounds/Burnt trees",
+      "type": "bathing",
+      "value": 3,
+      "cost": 300,
+      "description": "A secluded waterfall",
+      "traits": [
+        "dragon",
+        "primitive",
+        "nature",
+        "pixie"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Portrait",
+      "image": "Art/New/portrait",
+      "sound": "Audio/Audio/Item sounds/Burnt trees",
+      "type": "art",
+      "value": 4,
+      "cost": 500,
+      "description": "A lovely pressed red coat",
+      "traits": [
+        "queen",
+        "knight",
+        "opulent"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Redcoat",
+      "image": "Art/New/redcoat",
+      "sound": "Audio/Audio/Item sounds/Burnt trees",
+      "type": "art",
+      "value": 2,
+      "cost": 200,
+      "description": "A lovely pressed red coat",
+      "traits": [
+        "knight",
+        "villager",
+        "lethargic"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Hook",
+      "image": "Art/New/hook",
+      "sound": "Audio/Audio/Item sounds/Burnt trees",
+      "type": "art",
+      "value": 1,
+      "cost": 50,
+      "description": "An iron hook to hang your hat",
+      "traits": [
+        "knight",
+        "villager",
+        "primitive",
+        "spooky"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    },
+    {
+      "name": "Bird",
+      "image": "Art/New/cagedBird",
+      "sound": "Audio/Audio/Item sounds/Burnt trees",
+      "type": "art",
+      "value": 3,
+      "cost": 400,
+      "description": "A lovely pressed red coat",
+      "traits": [
+        "pixie",
+        "villager",
+        "nature"
+      ],
+      "allowed_modifiers": [
+        "worn",
+        "small",
+        "refurbished"
+      ]
+    }
+  ]
+}

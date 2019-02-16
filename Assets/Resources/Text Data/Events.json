@@ -1,0 +1,52 @@
+{
+    "Events": [
+        {
+            "name": "buyback",
+            "description": "A wizard appears, looking frantic. 'You got the last one! Will you sell your last item to me for $300? Help a wizard out!'",
+            "cost": 300,
+            "button1": "No",
+            "button2": "Sure",
+            "buttonMatters": true
+        },
+        {
+            "name": "transmute",
+            "description": "A wizard appears, looking whimsical. 'I've just learned a new spell that transmutes objects into other similar objects! Want a demonstration?'",
+            "cost": 100,
+            "button1": "No",
+            "button2": "Sure",
+            "buttonMatters": true
+        },
+        {
+            "name": "amnesia",
+            "description": "A wizard appears, looking mysterious. 'How is that amnesia working out?'",
+            "cost": 0,
+            "button1": "Amnesia?",
+            "button2": "Just Fine",
+            "buttonMatters": false
+        },
+        {
+            "name": "number",
+            "description": "A wizard appears, looking playful. 'What's my favorite number? A wrong guess will cost you!'",
+            "cost": 200,
+            "button1": "123",
+            "button2": "777",
+            "buttonMatters": false
+        },
+        {
+            "name": "donation",
+            "description": "A wizard appears, looking regal. 'It's time to donate to the annual Wizard's ball!'",
+            "cost": 100,
+            "button1": "$100",
+            "button2": "$300",
+            "buttonMatters": true
+        },
+        {
+            "name": "retheme",
+            "description": "A wizard appears, looking wize. 'Have you got a theme in mind for your client yet?'",
+            "cost": 200,
+            "button1": "No",
+            "button2": "Yes",
+            "buttonMatters": true
+        }
+    ]
+}

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement; // hey DON'T put this script in normal scenes
 
 public class IndependentSceneChangeButton : MonoBehaviour
 {
-    [SerializeField] string SceneNameToChangeTo;
+    [SerializeField] string SceneNameToChangeTo = "";
     private Button button;
 
     void Start()

@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class ClientInfoDisplay : MonoBehaviour
 {
-    [SerializeField] Text Name;
-    [SerializeField] Text Description;
-    [SerializeField] Image Pic;
-    [SerializeField] Text Budget;
+    [SerializeField] Text Name = null;
+    [SerializeField] Text Description = null;
+    public Image Pic = null;
+    [SerializeField] Text Budget = null;
+    [SerializeField] ClientInfoPopup popup = null;
 
     void Start()
     {
@@ -27,11 +28,18 @@ public class ClientInfoDisplay : MonoBehaviour
         Pic.sprite = Resources.Load<Sprite>(PlayerInfoDisplay.player.client.image);
         PlayerInfoDisplay.player.budget = budget;
         Budget.text = budget.ToString();
+        popup.SetClientInfo();
     }
 
     public void UpdateBudget(int amount)
     {
         PlayerInfoDisplay.player.budget += amount;
         Budget.text = PlayerInfoDisplay.player.budget.ToString();
+    }
+
+    public void UpdateClientImage(string path)
+    {
+        Pic.sprite = Resources.Load<Sprite>(path);
+        popup.SetClientPic(path);
     }
 }
