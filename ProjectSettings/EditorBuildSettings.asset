@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KatScene.unity
     guid: 7bb5ba8fa7004cc48a9f4f927417adda
+  - enabled: 1
+    path: Assets/Scenes/Room.unity
+    guid: 7e2d9760aac053041aeef2598a24f26c
   m_configObjects: {}

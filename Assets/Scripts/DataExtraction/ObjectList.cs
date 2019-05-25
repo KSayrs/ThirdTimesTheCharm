@@ -27,6 +27,7 @@ public class objectDef
     public string description;
     public int value;
     public int cost;
+    public bool isException = false;
     public List<string> traits;
     public List<string> allowed_modifiers;
 }

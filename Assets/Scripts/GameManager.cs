@@ -4,11 +4,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
     #region fields
     [SerializeField] ClientInfoDisplay clientAndBudget = null;
+    [SerializeField] GameObject clientPopup = null;
 
     private bool firstClient;
     private bool pigYear;
@@ -18,6 +20,11 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int[] choices;
     public bool[] eventTurns;
     private int rollOne, rollTwo;
+
+    public ButtonSelector buttonSelector;
+    public HideOrChangeOnRoundOne RoundOneChanges;
+    public Text CurrentCategoryText;
+    public EventSystem eventSystem;
 
     [Header("Buttons")]
     public RoundCounter roundCounter;
@@ -61,10 +68,19 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, List<objectDef>> categoryDict = new Dictionary<string, List<objectDef>>();
     private List<string> permittedCategorites = new List<string>();
 
+    private Scene RoomReference;
+    private bool canBackOut = false;
+
+    private Scene ScoreReference;
+
 #endregion
 
     private void Awake()
     {
+        // additively load room scene 
+        StartCoroutine(LoadRoom());
+        StartCoroutine(LoadScore());
+
         // assign categories to dict
         foreach (var item in Data.Objects)
         {
@@ -76,8 +92,11 @@ public class GameManager : MonoBehaviour
             else categoryDict[item.type].Add(item);
         }
 
+        CurrentCategoryText.text = "";
+
         maxTurns = categoryDict.Count-2;
         Debug.Log(maxTurns);
+
         // Initialize variables
         firstClient = true;
         pigYear = true;
@@ -108,6 +127,9 @@ public class GameManager : MonoBehaviour
         NewClients(0);
         NewClients(1);
         NewClients(2);
+
+        // highlight first button
+        EventSystem.current.SetSelectedGameObject(b_FirstButton.gameObject);
     }
 
     // Clickable buttons
@@ -128,10 +150,15 @@ public class GameManager : MonoBehaviour
 
     // Next Turn
     void NextTurn(int button)
-    {   
+    {
+        // Highlight first button
+        EventSystem.current.SetSelectedGameObject(b_FirstButton.gameObject);
+
         if (turn >= maxTurns)
         {
-            EnterScene("Score");
+            // GO TO YOUR SCORE
+            SceneManager.SetActiveScene(ScoreReference);
+            //EnterScene("Score");
             return;
         }
 
@@ -210,11 +237,16 @@ public class GameManager : MonoBehaviour
         if (!firstClient && turn == 0)
         {
             roundCounter.UpdateRound(1);
+            RoundOneChanges.Reset();
             turn += 1;
         }
         else
         {
             turn += 1;
+
+            // GO TO YOUR ROOM
+            SceneManager.SetActiveScene(RoomReference);
+            //EnterScene("Room");
         }
 
         // Store the current selection
@@ -226,6 +258,7 @@ public class GameManager : MonoBehaviour
         var objectsInCategory = categoryDict[cat];
         permittedCategorites.Remove(cat);
         Debug.Log("Removed Category: " + cat);
+        CurrentCategoryText.text = Proper(cat.ToString());
 
         // Reroll new buttons
         for (int b = 0; b < 3; b++)
@@ -254,7 +287,6 @@ public class GameManager : MonoBehaviour
         objectDef currentObject = null;
         if (objectsincat.Count > 1) currentObject = objectsincat[Random.Range(0, objectsincat.Count - 1)];
         else currentObject = objectsincat[0];
-        Debug.LogWarning(objectsincat.Count);
         var TraitIcons = new List<Image>();
 
         switch (button)
@@ -368,24 +400,44 @@ public class GameManager : MonoBehaviour
     // Show confirmation panel
     void LoadConfirmation(int button)
     {
+        // disable buttons, for eventmanager keypress
+        b_FirstButton.interactable = false;
+        b_SecondButton.interactable = false;
+        b_ThirdButton.interactable = false;
+
         UpdateConfirmImage(button);
         confirmButton = button;
         confirmPanel.SetActive(true);
+        canBackOut = true;
+
+        EventSystem.current.SetSelectedGameObject(b_ConfirmButton.gameObject);
     }
 
     // Confirm button
     public void ConfirmButton()
     {
+        // enable buttons
+        b_FirstButton.interactable = true;
+        b_SecondButton.interactable = true;
+        b_ThirdButton.interactable = true;
+
         NextTurn(confirmButton);
         confirmPanel.SetActive(false);
         confirmButton = -1;
+        canBackOut = false;
     }
 
     // Cancel button
     void CancelButton()
     {
+        // enable buttons
+        b_FirstButton.interactable = true;
+        b_SecondButton.interactable = true;
+        b_ThirdButton.interactable = true;
+
         confirmPanel.SetActive(false);
         confirmButton = -1;
+        canBackOut = false;
     }
 
     // Update the confirmation image
@@ -454,12 +506,20 @@ public class GameManager : MonoBehaviour
     // Show Event panel
     void LoadEvent()
     {
+        // disable buttons, for eventmanager keypress
+        b_FirstButton.interactable = false;
+        b_SecondButton.interactable = false;
+        b_ThirdButton.interactable = false;
+
         var rn = Random.Range(0, Data.Events.Count);
         currentEvent = Data.Events[rn];
         eventDescription.text = currentEvent.description;
         b_EventButtonOne.GetComponentInChildren<Text>().text = currentEvent.button1;
         b_EventButtonTwo.GetComponentInChildren<Text>().text = currentEvent.button2;
         eventPanel.SetActive(true);
+
+        // highlight button one
+        EventSystem.current.SetSelectedGameObject(b_EventButtonOne.gameObject);
     }
 
     // First Event Option
@@ -480,6 +540,9 @@ public class GameManager : MonoBehaviour
         eventConfirmMoney.text = currentEvent.cost.ToString();
         eventPanel.SetActive(false);
         eventConfirmPanel.SetActive(true);
+
+        // highlight confirm button
+        EventSystem.current.SetSelectedGameObject(b_EventConfirmButton.gameObject);
     }
 
     // Second Event Option
@@ -524,16 +587,48 @@ public class GameManager : MonoBehaviour
 
         eventPanel.SetActive(false);
         eventConfirmPanel.SetActive(true);
+
+        // highlight confirm button
+        EventSystem.current.SetSelectedGameObject(b_EventConfirmButton.gameObject);
     }
 
     // Event Confirm button
     private void EventConfirmButton()
     {
+        // enable buttons, for eventmanager keypress
+        b_FirstButton.interactable = true;
+        b_SecondButton.interactable = true;
+        b_ThirdButton.interactable = true;
+
         eventConfirmMoneyPanel.SetActive(false);
         eventConfirmPanel.SetActive(false);
+
+        // highlight first button
+        EventSystem.current.SetSelectedGameObject(b_FirstButton.gameObject);
     }
 
     //-------------------------------------------------
+
+    private void Update()
+    {
+        if (canBackOut)
+        {
+            if (Input.GetButtonUp("Cancel"))
+            {
+                Debug.Log("Canceled with Button");
+                CancelButton();
+            }
+        }
+
+        if (Input.GetButtonUp("OpenGuide"))
+        {
+            Debug.Log("Guide Opened");
+            clientPopup.SetActive(!clientPopup.active);
+        }
+    }
+
+    //-------------------------------------------------
+
     // call this from any script
     public static void EnterScene(string sceneName)
     {
@@ -544,6 +639,33 @@ public class GameManager : MonoBehaviour
     {
         return 1000; // shrug emoji
     }
+
+    IEnumerator LoadRoom()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Room", LoadSceneMode.Additive);
+        asyncLoad.allowSceneActivation = false;
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        RoomReference = SceneManager.GetSceneByName("Room");
+        Debug.Log(RoomReference);
+    }
+
+    IEnumerator LoadScore()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Score", LoadSceneMode.Additive);
+        asyncLoad.allowSceneActivation = false;
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        ScoreReference = SceneManager.GetSceneByName("Score");
+        Debug.Log(ScoreReference);
+    }
+
 
     void SetUpTraitIcons(List<Image> TraitIcons, objectDef currentObject)
     {
@@ -562,5 +684,10 @@ public class GameManager : MonoBehaviour
             }
             else TraitIcons[i].gameObject.SetActive(false);
         }
+    }
+
+    string Proper(string toConvert)
+    {
+        return toConvert[0].ToString().ToUpper() + toConvert.Substring(1, toConvert.Length-1);
     }
 }

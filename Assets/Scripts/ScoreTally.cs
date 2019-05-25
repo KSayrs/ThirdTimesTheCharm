@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // score is tallied here
 
@@ -27,8 +28,18 @@ public class ScoreTally : MonoBehaviour
     private int totalScore = 0;
     private int matchingTraitBonus = 0;
     private int clientModifier = 0;
+    private bool runOnce = true;
 
-    void Start()
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Score") && runOnce == true)
+        {
+            runOnce = false;
+            ScoreStart();
+        }
+    }
+
+    public void ScoreStart()
     {
         BaseItemScore.text = CalculateBaseItemScore().ToString();
         BudgetBonus.text = CalculateBudgetBonus();

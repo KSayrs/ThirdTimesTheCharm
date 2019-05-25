@@ -472,6 +472,7 @@
       "type": "addons",
       "value": 8,
       "cost": 450,
+      "isException":  true,
       "description": "Just a big empty space.",
       "traits": [
         "opulent",
@@ -493,6 +494,7 @@
       "type": "addons",
       "value": 3,
       "cost": 200,
+      "isException":  true,
       "description": "A cozy fireplace for the family.",
       "traits": [
         "cozy",
@@ -568,6 +570,7 @@
       "type": "landscape",
       "value": 2,
       "cost": 200,
+      "isException": true,
       "description": "Empty, except for the clover.",
       "traits": [
         "pig",
